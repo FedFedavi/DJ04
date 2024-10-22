@@ -1,21 +1,29 @@
- {% extends "films/base.html" %}
+{% extends "films/base.html" %}
 
-{% block content %}
-    <h2 class="mb-4">Список фильмов</h2>
-    <div class="row">
-        {% for film in films %}
-            <div class="col-md-4 mb-4">
-                <div class="card h-100">
-                    <img src="https://via.placeholder.com/150" class="card-img-top" alt="Movie Image">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ film.title }}</h5>
-                        <p class="card-text">{{ film.description|truncatewords:20 }}</p>
-                        <p class="card-text"><small class="text-muted">{{ film.review|truncatewords:20 }}</small></p>
-                    </div>
-                </div>
-            </div>
-        {% empty %}
-            <p>Нет доступных фильмов.</p>
-        {% endfor %}
-    </div>
-{% endblock %}
+     {% block content %}
+         <div class="row">
+             <div class="col-md-3">
+                 {% include "films/sidebar.html" %}
+             </div>
+             <div class="col-md-9">
+                 <h2 class="mb-4">Список фильмов</h2>
+                 <div class="row">
+                     {% for film in films %}
+                         <div class="col-md-4 mb-4">
+                             <div class="card h-100">
+<!--                                 <img src="https://via.placeholder.com/150" class="card-img-top" alt="Movie Image">-->
+                                 <div class="card-body">
+                                     <h5 class="card-title">{{ film.title }}</h5>
+                                     <p class="card-text">{{ film.description|truncatewords:20 }}</p>
+                                     <p class="card-text"><small class="text-muted">{{ film.review|truncatewords:20 }}</small></p>
+                                 </div>
+                             </div>
+                         </div>
+                     {% empty %}
+                         <p>Нет доступных фильмов.</p>
+                     {% endfor %}
+                 </div>
+             </div>
+         </div>
+{% include "films/footer.html" %}
+     {% endblock %}

@@ -1,30 +1,38 @@
- {% extends "films/base.html" %}
+{% extends "films/base.html" %}
 
 {% block content %}
-    <h2 class="mb-4">Добавить фильм</h2>
-    <form method="post" class="needs-validation" novalidate>
-        {% csrf_token %}
-        <div class="form-group">
-            {{ form.title.label_tag }}
-            {{ form.title|add_class:"form-control" }}
-            <div class="invalid-feedback">
-                Пожалуйста, введите название фильма.
-            </div>
+    <div class="row">
+        <div class="col-md-3">
+            {% include "films/sidebar.html" %}
         </div>
-        <div class="form-group">
-            {{ form.description.label_tag }}
-            {{ form.description|add_class:"form-control" }}
-            <div class="invalid-feedback">
-                Пожалуйста, введите описание фильма.
-            </div>
+        <div class="col-md-9">
+            <h2 class="mb-4">Добавить фильм</h2>
+            <form method="post" class="needs-validation" novalidate>
+                {% csrf_token %}
+                <div class="form-group">
+                    {{ form.title.label_tag }}
+                    {{ form.title }}
+                    <div class="invalid-feedback">
+                        Пожалуйста, введите название фильма.
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form.description.label_tag }}
+                    {{ form.description }}
+                    <div class="invalid-feedback">
+                        Пожалуйста, введите описание фильма.
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form.review.label_tag }}
+                    {{ form.review }}
+                    <div class="invalid-feedback">
+                        Пожалуйста, введите рецензию на фильм.
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Сохранить</button>
+            </form>
         </div>
-        <div class="form-group">
-            {{ form.review.label_tag }}
-            {{ form.review|add_class:"form-control" }}
-            <div class="invalid-feedback">
-                Пожалуйста, введите рецензию на фильм.
-            </div>
-        </div>
-        <button type="submit" class="btn btn-primary">Сохранить</button>
-    </form>
+    </div>
+{% include "films/footer.html" %}
 {% endblock %}
